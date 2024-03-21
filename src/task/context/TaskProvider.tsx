@@ -33,7 +33,7 @@ export const TaskProvider = ({ children }: TaskProviderProps) => {
       dueDate:"",
       id:0,
       name:"",
-      status:"todo"
+      status:""
     })
   }
 

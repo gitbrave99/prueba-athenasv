@@ -5,12 +5,14 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes } from './cofig/routes/AppRoutes.tsx'
+import { SideBarShareComponent } from './shared/components/SideBarShareComponent.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-    <AppRoutes/>
-    <App />
+      <SideBarShareComponent />
+      <AppRoutes />
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
 )

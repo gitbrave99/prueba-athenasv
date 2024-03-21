@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Route, Routes } from 'react-router-dom'
 import { MainTaskPage } from '../../task/pages/MainTaskPage'
 import { NotFoundPage } from '../../shared/pages/NotFoundPage'

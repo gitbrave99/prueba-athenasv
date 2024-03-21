@@ -6,8 +6,7 @@ import { Task } from '../interfaces/Task.interface'
 import { TaskProvider } from '../context/TaskProvider'
 import { HelperComponent } from '../components/HelperComponent'
 import { HeaderComponent } from '../components/HeaderComponent'
-import { SideBarShareComponent } from '../../shared/components/SideBarShareComponent'
-
+import { FilterSectionComponent } from '../components/FilterSectionComponent'
 export const MainTaskPage = () => {
 
   const [listTaskTodo, setListTaskTodo] = useState<Task[]>([])
@@ -40,10 +39,15 @@ export const MainTaskPage = () => {
   return (
     <>
       <TaskProvider>
-        <SideBarShareComponent />
-        <div className="container mt-5">
+      
+        <div className="container mt-5" style={{"marginTop":"56px"}}>
           <HeaderComponent />
-          <div className=" mt-1">
+          <FilterSectionComponent/>
+          <div className="card">
+            <div className="card-header">
+            <h5 className='text-center'>Ordered List</h5>
+            </div>
+            <div className="card-body">
             <div className="row row-cols-1 row-cols-md-3">
               <div className="col">
                 <CardListTaskComponent title='Todo' color='secondary' listTask={listTaskTodo} />
@@ -54,6 +58,7 @@ export const MainTaskPage = () => {
               <div className="col">
                 <CardListTaskComponent title='Done' color='success' listTask={listTaskDone} />
               </div>
+            </div>
             </div>
           </div>
         </div>

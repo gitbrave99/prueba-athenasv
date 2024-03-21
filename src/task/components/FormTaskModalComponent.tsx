@@ -25,7 +25,6 @@ export const FormTaskModalComponent = ({ onLoadTask, title }: FormModalComponent
     evt.preventDefault();
     if (task.id > 0) {
       onUpdateTask()
-
       return;
     }
     onSaveTask(task);
@@ -40,7 +39,7 @@ export const FormTaskModalComponent = ({ onLoadTask, title }: FormModalComponent
       if (result.id > 0) {
         onLoadTask().then(() => {
           setIsModalVisible(false)
-          manageNotificationVisibility(true, "Adding", `Task has been addded ${result.name}`)
+          manageNotificationVisibility(true, "Adding", `Task has been added ${result.name}`)
         })
         return
       }
@@ -90,17 +89,17 @@ export const FormTaskModalComponent = ({ onLoadTask, title }: FormModalComponent
             <form onSubmit={submitForm} method='POST'>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">Name</label>
-                <input type="text" className="form-control" name='name' id="name"
+                <input type="text" className="form-control" name='name' id="name" required
                   value={task.name} onChange={onInputChange} />
               </div>
               <div className="mb-3">
                 <label htmlFor="description" className="form-label">Description</label>
-                <input type="text" className="form-control" id="description" name='description'
+                <input type="text" className="form-control" id="description" name='description' required
                   value={task.description} onChange={onInputChange} />
               </div>
               <div className="mb-3">
                 <label htmlFor="status" className="form-label">Status</label>
-                <select className="form-select form-select-sm" name='status'
+                <select className="form-select form-select-sm" name='status' required
                   value={task.status} onChange={onSelectChange}>
                   <option value={""} disabled>Select one</option>
                   <option value="todo">Todo</option>
@@ -110,7 +109,7 @@ export const FormTaskModalComponent = ({ onLoadTask, title }: FormModalComponent
               </div>
               <div className="mb-3">
                 <label htmlFor="dueDate" className="form-label">Due date</label>
-                <input type="date" className="form-control" id="duedate" name='dueDate'
+                <input type="date" className="form-control" id="duedate" name='dueDate' required
                   value={task.dueDate} onChange={onInputChange} />
               </div>
               <div className="modal-footer">

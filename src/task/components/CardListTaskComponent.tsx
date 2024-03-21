@@ -12,16 +12,18 @@ export const CardListTaskComponent = ({ listTask, title, color }: TableTaskProps
   return (
     <>
     
-      <div className="card" style={{ "border": "none" }}>
+      <div className="card mb-3" style={{ "border": "none" }}>
         <div className={headerClass}>
           <h5>{title}</h5>
         </div>
         <div className="">
-          {
-            listTask.map((task) => (
-              <CardItemComponent key={task.id} task={task} color={color}></CardItemComponent>
-            ))
-          }
+        {
+          listTask.length > 0?
+          (  listTask.map((task) => (
+            <CardItemComponent key={task.id} task={task} color={color}></CardItemComponent>
+          )))
+          :<h1 className='text-center'></h1>
+        }
         </div>
       </div>
     </>
