@@ -4,7 +4,9 @@ export interface Task {
     id:           number;
     name:         string;
     description:  string;
-    status:       string;
+    status:       TypeStatus;
     creationDate: string;
     dueDate:      string;
 }
+
+type TypeStatus= 'todo'|'doing'|'done'|''

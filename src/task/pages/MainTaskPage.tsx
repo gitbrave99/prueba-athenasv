@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { CardListTasks } from '../components/CardListTasks'
+import { useEffect, useState } from 'react'
+import { CardListTaskComponent } from '../components/CardListTaskComponent'
 import { TaskService } from '../services/TaskService'
 import { Task } from '../interfaces/Task.interface'
-import { ConfirmModal } from '../../shared/components/ConfirmModal'
-import { Link } from 'react-router-dom'
-import { AddTaskModal } from '../components/AddTaskModal'
+
+import { TaskProvider } from '../context/TaskProvider'
+import { HelperComponent } from '../components/HelperComponent'
+import { HeaderComponent } from '../components/HeaderComponent'
+import { SideBarShareComponent } from '../../shared/components/SideBarShareComponent'
 
 export const MainTaskPage = () => {
 
@@ -15,10 +17,8 @@ export const MainTaskPage = () => {
   useEffect(() => {
     loadTasks()
     return () => {
-
     }
   }, [])
-
 
   const loadTasks = async () => {
     try {
@@ -31,47 +31,34 @@ export const MainTaskPage = () => {
     } catch (error) {
       console.error("[ERROR load-tasks] ", error);
     }
-
   }
-  const onSaveTask = async (task: Task) => {
-    try {
-      const result = await TaskService.addTask(task);
-      console.log("results", result);
 
-    } catch (error) {
-      console.log("error ", error);
 
-    }
-  }
+
 
 
   return (
     <>
-      <h1 className='text-center'>List task</h1>
-
-      <div className="d-flex justify-content-center">
-        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-          Add
-        </button>
-      </div>
-
-      <Link to={"ruta"}></Link>
-      <div className="container mt-1">
-        <div className="row">
-          <div className="col-4">
-            <CardListTasks title='Todo' color='secondary' listTask={listTaskTodo} />
-          </div>
-
-          <div className="col-4">
-            <CardListTasks title='Doing' color='warning' listTask={listTaskTodo} />
-          </div>
-
-          <div className="col-4">
-            <CardListTasks title='Done' color='success' listTask={listTaskDone} />
+      <TaskProvider>
+        <SideBarShareComponent />
+        <div className="container mt-5">
+          <HeaderComponent />
+          <div className=" mt-1">
+            <div className="row row-cols-1 row-cols-md-3">
+              <div className="col">
+                <CardListTaskComponent title='Todo' color='secondary' listTask={listTaskTodo} />
+              </div>
+              <div className="col">
+                <CardListTaskComponent title='Doing' color='warning' listTask={listTaskDoing} />
+              </div>
+              <div className="col">
+                <CardListTaskComponent title='Done' color='success' listTask={listTaskDone} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <AddTaskModal onSubmit={onSaveTask}></AddTaskModal>
+        <HelperComponent onLoadTask={loadTasks}></HelperComponent>
+      </TaskProvider>
     </>
   )
 }

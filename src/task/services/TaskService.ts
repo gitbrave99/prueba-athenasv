@@ -20,4 +20,20 @@ export class TaskService {
         })
     }
 
+    static updateTask(id:number,task:Task):Promise<Task>{
+        return new Promise((resolve, reject)=>{
+            FetchUtils.putData<Task>(`${APIBASE}/items/${id}`,task)
+            .then(data=>resolve(data))
+            .catch(error=>reject(error))
+        })
+    }
+
+    static deleteTask(id:number):Promise<string>{
+        return new Promise((resolve, reject)=>{
+            FetchUtils.deleteData<string>(`${APIBASE}/items/${id}`)
+            .then(data=>resolve(data))
+            .catch(error=>reject(error))
+        })
+    }
+
 }
